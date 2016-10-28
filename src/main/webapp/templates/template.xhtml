@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+
+<h:head>
+    <h:outputStylesheet name="stylesheet.css" library="css" />
+</h:head>
+
+<h:body>
+
+    <div id="page">
+
+        <div id="header">
+            <h1>Header</h1>
+            <b:navBar brand="Plenty Pizzas">
+                <b:navbarLinks>
+                    <b:navLink value="Catalog" href="catalog.xhtml"/>
+                </b:navbarLinks>
+                <b:navbarLinks pull="right">
+                    <b:navLink value="#{cart.numberOfItems} items" iconAwesome="shopping-cart" href="shoppingcart.xhtml"/>
+                </b:navbarLinks>
+            </b:navBar>
+        </div>
+
+        <div id="content">
+            <ui:insert name="content" >
+                <ui:include src="content.xhtml" />
+            </ui:insert>
+        </div>
+
+    </div>
+
+</h:body>
+</html>

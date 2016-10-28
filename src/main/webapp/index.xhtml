@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:form="http://www.springframework.org/tags/form"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <title>Valuta Converter</title>
+    <h:outputStylesheet library="css" name="stylesheet.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+</h:head>
+<h:body>
+    <b:container>
+        <b:column colMd="12">
+            <h:form>
+                <h:dataTable value="#{valutaConverter.valutaList.valutas}" var="valuta" styleClass="table table-striped table-middle-align">
+                    <h:column>
+                        <f:facet name="header">
+                            Name
+                            <h:commandLink action="#{valutaConverter.sortValutasByName()}">
+                                <h:outputText styleClass="fa fa-sort"/>
+                            </h:commandLink>
+                        </f:facet>
+                        <h:inputText value="#{valuta.name}" rendered="#{valuta.edited}" />
+                        <h:outputText value="#{valuta.name}" rendered="#{not valuta.edited}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Value
+                            <h:commandLink action="#{valutaConverter.sortValutasByValue()}">
+                                <h:outputText styleClass="fa fa-sort"/>
+                            </h:commandLink></f:facet>
+                        <h:inputText value="#{valuta.value}" rendered="#{valuta.edited}" />
+                        <h:outputText value="#{valuta.value}" rendered="#{not valuta.edited}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Symbol</f:facet>
+                        <h:inputText value="#{valuta.symbol}" rendered="#{valuta.edited}" />
+                        <h:outputText value="#{valuta.symbol}" rendered="#{not valuta.edited}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"></f:facet>
+                        <h:commandLink action="#{valutaConverter.valutaList.editValuta(valuta)}">
+                            <button class="btn btn-warning"><span class="fa fa-pencil"></span></button>
+                        </h:commandLink>
+                        <h:commandLink action="#{valutaConverter.valutaList.deleteValuta(valuta)}">
+                            <button class="btn btn-danger"><span class="fa fa-trash"></span></button>
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+                <h:commandButton action="#{valutaConverter.valutaList.saveValutas()}" value="Save" styleClass="btn btn-success"/>
+            </h:form>
+        </b:column>
+    </b:container>
+
+
+
+
+        <!--<h1>Convert your amount of euros to the value of your choice.</h1>-->
+            <!--<h:inputText id="amount"-->
+                         <!--value="#{valutaConverter.value}"-->
+                         <!--required="true"-->
+                         <!--requiredMessage="Error: Amount is required."-->
+                         <!--maxlength="25" />-->
+            <!--<p></p>-->
+            <!--<h:selectOneMenu value="#{valutaConverter.valuta}">-->
+                <!--<c:forEach items="${valutaConverter.valutaList.valutas}" var="valuta">-->
+                    <!--<f:selectItem itemValue="${valuta.name}" itemLabel="${valuta.name}"></f:selectItem>-->
+                <!--</c:forEach>-->
+                <!--&lt;!&ndash;<f:selectItem itemValue="yen" itemLabel="Yen"></f:selectItem>&ndash;&gt;-->
+            <!--</h:selectOneMenu>-->
+            <!--<p></p>-->
+            <!--<h:commandButton id="submit" value="Submit" action="response" />-->
+            <!--<h:commandButton id="reset" value="Reset" type="reset" />-->
+        <!--<div class="messagecolor">-->
+            <!--<h:messages showSummary="true"-->
+                        <!--showDetail="false"-->
+                        <!--errorStyle="color: #d20005"-->
+                        <!--infoStyle="color: blue"/>-->
+        <!--</div>-->
+</h:body>
+</html>
+
