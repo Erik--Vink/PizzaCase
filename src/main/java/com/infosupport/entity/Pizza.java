@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.inject.Named;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.ArrayList;
 
 /**
@@ -16,10 +18,15 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 @Named
+@Entity
 public class Pizza {
-    private int pizzaId;
+    @Id private int pizzaId;
     private String name;
     private double price;
-    private ArrayList<Ingredient> ingredients;
+    private String ingredients;
     private boolean edited;
+
+    public Pizza(int id){
+        this.pizzaId = id;
+    }
 }

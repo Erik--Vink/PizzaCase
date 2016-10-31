@@ -1,8 +1,10 @@
 package com.infosupport.web.managedBeans;
 
 import com.infosupport.collections.PizzaCollection;
+import com.infosupport.ejb.PizzaRequestBean;
 import com.infosupport.entity.Pizza;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,13 +18,16 @@ public class CatalogBean implements Serializable{
     @Inject
     ShoppingCart cart;
 
+    @EJB
+    PizzaRequestBean pizzaRequestBean;
+
     private String sortDirection;
 
     public CatalogBean(){
         sortDirection = "asc";
     }
     public List<Pizza> getPizzas(){
-        return PizzaCollection.getInstance().getPizzas();
+        return pizzaRequestBean.getAllPizzas();
     }
 
     public void updatePizza(Pizza pizza){
