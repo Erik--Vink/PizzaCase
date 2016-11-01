@@ -26,8 +26,18 @@
                                 <f:facet name="header">Quantity</f:facet>
                                 <h:outputText value="#{item.quantity}"/>
                             </h:column>
+                            <h:column>
+                                <f:facet name="header"></f:facet>
+                                <h:commandLink action="#{cart.incrementShoppingCartItemQuantity(item)}">
+                                <button class="btn btn-success"><span class="fa fa-plus"></span></button>
+                                </h:commandLink>
+                                <h:commandLink action="#{cart.decrementShoppingCartItemQuantity(item)}">
+                                <button class="btn btn-danger"><span class="fa fa-minus"></span></button>
+                                </h:commandLink>
+                            </h:column>
                         </h:dataTable>
                     </h:form>
+                    <h:outputText value="Total: €#{cart.total}"/>
                 </b:column>
             </b:container>
         </ui:define>

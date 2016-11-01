@@ -16,18 +16,26 @@ public class PizzaRequestBean {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Pizza createPizza(int id, String name, double price, String ingredients){
-        Pizza pizza = new Pizza(id);
+    public Pizza create(String name, double price, String ingredients){
+        Pizza pizza = new Pizza();
         pizza.setName(name);
         pizza.setPrice(price);
         pizza.setIngredients(ingredients);
-        pizza.setEdited(false);
         entityManager.persist(pizza);
         return pizza;
     }
 
-    public List<Pizza> getAllPizzas(){
+    public List<Pizza> getAll(){
         TypedQuery<Pizza> query = entityManager.createQuery("SELECT p FROM Pizza p", Pizza.class);
         return query.getResultList();
+    }
+
+    public Pizza update(Pizza pizza) throws Exception{
+        Pizza existingPizza = entityManager.find(Pizza.class, pizza.getPizzaId());
+        if (existingPizza == null) {
+            throw new Exception("Entity does not exist");
+        }
+        entityManager.persist(pizza);
+        return pizza;
     }
 }

@@ -17,20 +17,12 @@
                             <h:column>
                                 <f:facet name="header">
                                     Name
-                                    <h:commandLink action="#{catalog.sortPizzasByName()}">
-                                        <h:outputText styleClass="fa fa-sort"/>
-                                    </h:commandLink>
                                 </f:facet>
-                                <h:inputText value="#{pizza.name}" rendered="#{pizza.edited}" />
-                                <h:outputText value="#{pizza.name}" rendered="#{not pizza.edited}" />
+                                <h:outputText value="#{pizza.name}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Price
-                                    <h:commandLink action="#{catalog.sortPizzasByPrice()}">
-                                        <h:outputText styleClass="fa fa-sort"/>
-                                    </h:commandLink></f:facet>
-                                <h:inputText value="#{pizza.price}" rendered="#{pizza.edited}" />
-                                <h:outputText value="#{pizza.price}" rendered="#{not pizza.edited}" />
+                                <f:facet name="header">Price</f:facet>
+                                <h:outputText value="#{pizza.price}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"/>
@@ -38,7 +30,7 @@
                             </h:column>
                             <!--<h:column>-->
                                 <!--<f:facet name="header"></f:facet>-->
-                                <!--<h:commandLink action="#{catalog.updatePizza(pizza)}">-->
+                                <!--<h:commandLink action="#{catalog.togglePizzaEditFields(pizza)}">-->
                                     <!--<button class="btn btn-warning"><span class="fa fa-pencil"></span></button>-->
                                 <!--</h:commandLink>-->
                                 <!--<h:commandLink action="#{catalog.deletePizza(pizza)}">-->
@@ -46,7 +38,6 @@
                                 <!--</h:commandLink>-->
                             <!--</h:column>-->
                         </h:dataTable>
-                        <h:commandButton action="#{catalog.savePizzas}" value="Save" styleClass="btn btn-success"/>
                     </h:form>
                 </b:column>
             </b:container>

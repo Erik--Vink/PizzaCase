@@ -12,22 +12,25 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 
-/**
- * <p>Singleton bean that initializes the book database for the bookstore
- * example.</p>
- */
 @Singleton
 @Startup
 public class ConfigBean {
 
     @EJB
-    private PizzaRequestBean request;
+    private PizzaRequestBean pizzaRequestBean;
+
+    @EJB
+    private CustomerRequestBean customerRequestBean;
 
     @PostConstruct
     public void createData() {
-        request.createPizza(1, "Hawai", 7.5, "Tomatoes, ananas...");
-        request.createPizza(2, "Peperoni", 6.5, "Lots of tomatoes and ananas");
-        request.createPizza(3, "Margaritha", 99.99, "Basic stuff");
-        request.createPizza(4, "Salami", 99.99, "Lots of salami");
+        pizzaRequestBean.create("Hawai", 7.5, "Tomatoes, ananas...");
+        pizzaRequestBean.create("Peperoni", 6.5, "Lots of tomatoes and ananas");
+        pizzaRequestBean.create("Margaritha", 99.99, "Basic stuff");
+        pizzaRequestBean.create("Salami", 99.99, "Lots of salami");
+        pizzaRequestBean.create("Perfect pizza", 4.50, "It's just perfect");
+
+        customerRequestBean.create(1, "John Doe");
+        customerRequestBean.create(2, "Jane Doe");
     }
 }
