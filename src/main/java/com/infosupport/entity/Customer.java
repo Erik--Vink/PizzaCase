@@ -19,6 +19,11 @@ import java.util.Collection;
 public class Customer {
     @Id private int customerId;
     private String name;
+    private String zipcode;
+    private String houseNumber;
+    private String street;
+    private String city;
+
 //    @OneToMany(targetEntity=Order.class)
 //    private Collection<Order> orders;
 }

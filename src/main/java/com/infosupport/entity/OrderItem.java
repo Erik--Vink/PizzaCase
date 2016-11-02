@@ -9,6 +9,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="PizzaOrder")
-public class Order {
+public class OrderItem {
     @Id private int orderId;
+
 }

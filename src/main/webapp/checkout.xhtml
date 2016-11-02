@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+
+>
+<h:body>
+
+    <ui:composition template="templates/template.xhtml">
+        <ui:define name="content">
+            <b:container>
+                <b:column colMd="12">
+                    <h1>Checkout</h1>
+
+                    <h:form>
+                        <b:row>
+                            <b:column colMd="6">
+                                <b:inputText id="name" value="#{checkout.customer.name}" label="Name" required="true" renderLabel="true" span="12"/>
+                                <h:message for="name" />
+                                <b:inputText id="city" value="#{checkout.customer.city}" label="City" renderLabel="true" span="12"/>
+                                <h:message for="city" />
+                                <b:inputText id="zipcode" value="#{checkout.customer.zipcode}" label="Zipcode" renderLabel="true" span="6"/>
+                                <h:message for="zipcode" />
+                                <b:inputText id="houseNumber" value="#{checkout.customer.zipcode}" label="Housenumber" renderLabel="true" span="6"/>
+                                <h:message for="houseNumber" />
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column colMd="12">
+                                <h2>Order items</h2>
+                                <h:dataTable value="#{cart.items}" var="item" styleClass="table table-striped table-middle-align">
+                                    <h:column>
+                                        <f:facet name="header">Name</f:facet>
+                                        <h:outputText value="#{item.item.name}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Price</f:facet>
+                                        <h:outputText value="#{item.item.price}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Quantity</f:facet>
+                                        <h:outputText value="#{item.quantity}"/>
+                                    </h:column>
+                                </h:dataTable>
+                                <h:outputText value="Total: €#{cart.total}"/>
+                            </b:column>
+                        </b:row>
+                        <b:row>
+                            <b:column colMd="2">
+                                <h:commandButton type="submit"  value="Submit order" styleClass="btn btn-success"/>
+                            </b:column>
+                        </b:row>
+                    </h:form>
+                </b:column>
+            </b:container>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+
+</html>

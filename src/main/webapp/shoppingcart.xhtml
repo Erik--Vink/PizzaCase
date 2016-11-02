@@ -36,8 +36,9 @@
                                 </h:commandLink>
                             </h:column>
                         </h:dataTable>
+                        <h:outputText value="Total: €#{cart.total}"/>
+                        <h:commandButton action="checkout" value="Checkout" styleClass="btn btn-default"/>
                     </h:form>
-                    <h:outputText value="Total: €#{cart.total}"/>
                 </b:column>
             </b:container>
         </ui:define>
