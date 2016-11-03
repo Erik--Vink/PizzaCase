@@ -23,9 +23,11 @@
                                 <h:message for="name" />
                                 <b:inputText id="city" value="#{checkout.customer.city}" label="City" renderLabel="true" span="12"/>
                                 <h:message for="city" />
-                                <b:inputText id="zipcode" value="#{checkout.customer.zipcode}" label="Zipcode" renderLabel="true" span="6"/>
+                                <b:inputText id="zipcode" value="#{checkout.customer.zipcode}" label="Zipcode" renderLabel="true" span="12"/>
                                 <h:message for="zipcode" />
-                                <b:inputText id="houseNumber" value="#{checkout.customer.zipcode}" label="Housenumber" renderLabel="true" span="6"/>
+                                <b:inputText id="street" value="#{checkout.customer.street}" label="Street" renderLabel="true" span="6"/>
+                                <h:message for="street" />
+                                <b:inputText id="houseNumber" value="#{checkout.customer.houseNumber}" label="Housenumber" renderLabel="true" span="6"/>
                                 <h:message for="houseNumber" />
                             </b:column>
                         </b:row>
@@ -51,7 +53,7 @@
                         </b:row>
                         <b:row>
                             <b:column colMd="2">
-                                <h:commandButton type="submit"  value="Submit order" styleClass="btn btn-success"/>
+                                <h:commandButton type="submit"  value="Submit order" action="#{checkout.submitOrder()}" styleClass="btn btn-success"/>
                             </b:column>
                         </b:row>
                     </h:form>

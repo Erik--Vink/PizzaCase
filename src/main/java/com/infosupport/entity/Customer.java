@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Collection;
 
 /**
@@ -17,13 +15,15 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Customer {
-    @Id private int customerId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int customerId;
     private String name;
     private String zipcode;
     private String houseNumber;
     private String street;
     private String city;
 
-//    @OneToMany(targetEntity=Order.class)
+//    @OneToMany(mappedBy = "customer")
 //    private Collection<Order> orders;
 }

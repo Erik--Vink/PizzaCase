@@ -1,6 +1,7 @@
 package com.infosupport.web.managedBeans;
 
 import com.infosupport.ejb.CustomerRequestBean;
+import com.infosupport.ejb.OrderRequestBean;
 import com.infosupport.ejb.PizzaRequestBean;
 import com.infosupport.entity.Customer;
 import lombok.Data;
@@ -25,11 +26,16 @@ public class CheckoutBean implements Serializable {
     @EJB
     CustomerRequestBean customerRequestBean;
 
+    @EJB
+    OrderRequestBean orderRequestBean;
+
     public CheckoutBean(){
         this.customer = new Customer();
     }
 
-    public void submitOrder(){
-        //customerRequestBean.create();
+    public String submitOrder(){
+        Customer customer = customerRequestBean.create(this.customer);
+        orderRequestBean.create(cart.getOrderItems(), customer, cart.getTotal());
+        return "catalog";
     }
 }

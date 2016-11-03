@@ -17,10 +17,14 @@ public class CustomerRequestBean {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public Customer create(int id, String name){
+    public Customer create(String name){
         Customer customer = new Customer();
-        customer.setCustomerId(id);
         customer.setName(name);
+        entityManager.persist(customer);
+        return customer;
+    }
+
+    public Customer create(Customer customer){
         entityManager.persist(customer);
         return customer;
     }

@@ -1,6 +1,8 @@
 package com.infosupport;
 
+import com.infosupport.entity.Customer;
 import com.infosupport.entity.Pizza;
+import com.infosupport.web.managedBeans.CheckoutBean;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,5 +20,10 @@ public class Main {
 //        entityManager.getTransaction().begin();
 //        Pizza pizza = service.createPizza(2, "Hawaii", 99.99, "Lots of tomatoes and ananas");
 //        entityManager.getTransaction().commit();
+
+
+//        CheckoutBean checkoutBean = new CheckoutBean();
+//        checkoutBean.setCustomer(new Customer());
+//        checkoutBean.submitOrder();
     }
 }

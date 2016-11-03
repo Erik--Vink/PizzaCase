@@ -30,7 +30,7 @@ public class ConfigBean {
         pizzaRequestBean.create("Salami", 99.99, "Lots of salami");
         pizzaRequestBean.create("Perfect pizza", 4.50, "It's just perfect");
 
-        customerRequestBean.create(1, "John Doe");
-        customerRequestBean.create(2, "Jane Doe");
+        customerRequestBean.create("John Doe");
+        customerRequestBean.create("Jane Doe");
     }
 }

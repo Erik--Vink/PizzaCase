@@ -1,6 +1,8 @@
 package com.infosupport.web.managedBeans;
 
+import com.infosupport.entity.OrderItem;
 import com.infosupport.entity.Pizza;
+import com.sun.org.apache.xpath.internal.operations.Or;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 
 /**
  * Created by Erik on 27-10-2016.
@@ -38,6 +41,10 @@ public class ShoppingCart implements Serializable{
         results.addAll(this.items.values());
 
         return results;
+    }
+
+    public synchronized List<OrderItem> getOrderItems(){
+        return items.keySet().stream().map(key -> new OrderItem(items.get(key))).collect(Collectors.toList());
     }
 
     public synchronized int getNumberOfItems() {
