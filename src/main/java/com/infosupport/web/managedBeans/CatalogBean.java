@@ -15,8 +15,8 @@ import java.util.List;
 @SessionScoped
 @Named("catalog")
 public class CatalogBean implements Serializable{
-    @Inject
-    ShoppingCart cart;
+//    @Inject
+//    ShoppingCart cart;
 
     @EJB
     PizzaRequestBean pizzaRequestBean;

@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:b="http://bootsfaces.net/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core"
 >
 <h:body>
 
     <ui:composition template="templates/template.xhtml">
         <ui:define name="content">
-            <b:container>
-                <b:column colMd="12">
-                    <h:form>
-                        <h:dataTable value="#{orders.orders}" var="order" styleClass="table table-striped table-middle-align">
+            <h:form>
+                <div class="container">
+                    <div class="col-sm-12">
+                        <h:dataTable value="#{orders.orders}" var="order" styleClass="table table-striped">
                             <h:column>
                                 <f:facet name="header">
                                     Name
@@ -22,25 +21,31 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Price</f:facet>
-                                <h:outputText value="#{order.totalPrice}"/>
+                                <h:outputText value="€ #{order.totalPrice}"/>
+                            </h:column>
+                            <h:column headerClass="column-75">
+                                <details>
+                                    <summary>Items</summary>
+                                    <h:dataTable value="#{order.orderItems}" var="orderItem" styleClass="table">
+                                        <h:column>
+                                            <f:facet name="header">Pizza</f:facet>
+                                            <h:outputText value="#{orderItem.pizza.name}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Quantity</f:facet>
+                                            <h:outputText value="#{orderItem.quantity}"/>
+                                        </h:column>
+                                    </h:dataTable>
+                                </details>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"/>
-                                <h:commandButton action="#{cart.add(pizza.pizzaId, pizza)}" value="Add to cart" styleClass="btn btn-success"/>
+                                <!--<h:commandButton action="#{cart.addblabla(pizza.pizzaId, pizza)}" value="" styleClass="btn btn-success"/>-->
                             </h:column>
-                            <!--<h:column>-->
-                                <!--<f:facet name="header"></f:facet>-->
-                                <!--<h:commandLink action="#{catalog.togglePizzaEditFields(pizza)}">-->
-                                    <!--<button class="btn btn-warning"><span class="fa fa-pencil"></span></button>-->
-                                <!--</h:commandLink>-->
-                                <!--<h:commandLink action="#{catalog.deletePizza(pizza)}">-->
-                                    <!--<button class="btn btn-danger"><span class="fa fa-trash"></span></button>-->
-                                <!--</h:commandLink>-->
-                            <!--</h:column>-->
                         </h:dataTable>
-                    </h:form>
-                </b:column>
-            </b:container>
+                    </div>
+                </div>
+            </h:form>
         </ui:define>
     </ui:composition>
 

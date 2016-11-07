@@ -15,8 +15,8 @@ import java.util.List;
 @SessionScoped
 @Named("orders")
 public class OrdersBean implements Serializable{
-    @Inject
-    ShoppingCart cart;
+//    @Inject
+//    ShoppingCart cart;
 
     @EJB
     OrderRequestBean orderRequestBean;

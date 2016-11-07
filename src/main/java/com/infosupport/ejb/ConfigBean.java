@@ -7,6 +7,10 @@
  */
 package com.infosupport.ejb;
 
+import com.infosupport.entity.Customer;
+import com.infosupport.entity.Pizza;
+import com.infosupport.web.managedBeans.ShoppingCart;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
@@ -22,15 +26,33 @@ public class ConfigBean {
     @EJB
     private CustomerRequestBean customerRequestBean;
 
+    @EJB
+    private OrderRequestBean orderRequestBean;
+
     @PostConstruct
     public void createData() {
-        pizzaRequestBean.create("Hawai", 7.5, "Tomatoes, ananas...");
-        pizzaRequestBean.create("Peperoni", 6.5, "Lots of tomatoes and ananas");
-        pizzaRequestBean.create("Margaritha", 99.99, "Basic stuff");
-        pizzaRequestBean.create("Salami", 99.99, "Lots of salami");
-        pizzaRequestBean.create("Perfect pizza", 4.50, "It's just perfect");
+        Pizza pizza1 = pizzaRequestBean.create("Hawai", 7.5, "Tomatoes, ananas...");
+        Pizza pizza2 = pizzaRequestBean.create("Peperoni", 6.5, "Lots of tomatoes and ananas");
+        Pizza pizza3 = pizzaRequestBean.create("Margaritha", 99.99, "Basic stuff");
+        Pizza pizza4 = pizzaRequestBean.create("Salami", 99.99, "Lots of salami");
+        Pizza pizza5 = pizzaRequestBean.create("Perfect pizza", 4.50, "It's just perfect");
 
-        customerRequestBean.create("John Doe");
-        customerRequestBean.create("Jane Doe");
+        Customer customer1 = customerRequestBean.create("John Doe");
+        Customer customer2 = customerRequestBean.create("Jane Doe");
+
+        ShoppingCart shoppingCart1 = new ShoppingCart();
+        shoppingCart1.add(pizza1.getPizzaId(), pizza1);
+        shoppingCart1.add(pizza2.getPizzaId(), pizza2);
+        shoppingCart1.add(pizza1.getPizzaId(), pizza1);
+
+        ShoppingCart shoppingCart2 = new ShoppingCart();
+        shoppingCart2.add(pizza3.getPizzaId(), pizza3);
+        shoppingCart2.add(pizza4.getPizzaId(), pizza4);
+        shoppingCart2.add(pizza5.getPizzaId(), pizza5);
+        shoppingCart2.add(pizza5.getPizzaId(), pizza5);
+        shoppingCart2.add(pizza5.getPizzaId(), pizza5);
+
+        orderRequestBean.create(shoppingCart1.getOrderItems(), customer1, shoppingCart1.getTotal());
+//        orderRequestBean.create(shoppingCart2.getOrderItems(), customer2, shoppingCart2.getTotal());
     }
 }

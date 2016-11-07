@@ -26,6 +26,7 @@ public class OrderRequestBean {
         order.setOrderItems(orderItems);
         order.setTotalPrice(total);
         entityManager.persist(order);
+        entityManager.flush();
         return order;
     }
 

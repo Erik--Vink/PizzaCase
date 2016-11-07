@@ -21,11 +21,13 @@ public class CustomerRequestBean {
         Customer customer = new Customer();
         customer.setName(name);
         entityManager.persist(customer);
+        entityManager.flush();
         return customer;
     }
 
     public Customer create(Customer customer){
         entityManager.persist(customer);
+        entityManager.flush();
         return customer;
     }
 

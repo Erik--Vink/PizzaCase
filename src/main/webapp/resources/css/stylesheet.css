@@ -9,4 +9,16 @@ body {
     vertical-align: middle !important;
 }
 
+.table .column-75{
+    width: 75%;
+}
+
+details summary:hover{
+    cursor: pointer;
+}
+
+.padding-right-30{
+    padding-right: 30px;
+}
+
 

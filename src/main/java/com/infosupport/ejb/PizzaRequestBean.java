@@ -22,6 +22,7 @@ public class PizzaRequestBean {
         pizza.setPrice(price);
         pizza.setIngredients(ingredients);
         entityManager.persist(pizza);
+        entityManager.flush();
         return pizza;
     }
 
