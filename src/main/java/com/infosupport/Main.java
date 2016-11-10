@@ -1,12 +1,8 @@
 package com.infosupport;
 
-import com.infosupport.entity.Customer;
-import com.infosupport.entity.Pizza;
-import com.infosupport.web.managedBeans.CheckoutBean;
+import com.infosupport.ejb.PizzaRequestBean;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.xml.ws.Endpoint;
 
 /**
  * Created by Erik on 31-10-2016.
@@ -25,5 +21,11 @@ public class Main {
 //        CheckoutBean checkoutBean = new CheckoutBean();
 //        checkoutBean.setCustomer(new Customer());
 //        checkoutBean.submitOrder();
+
+        final String url = "http://localhost:8888/hello";
+//        http://localhost:8080/pizzaCase/PizzaServiceService?Tester
+        System.out.println("Publishing RandService at endpoint " + url);
+        Endpoint.publish(url, new PizzaRequestBean());
+
     }
 }
